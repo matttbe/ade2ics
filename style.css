@@ -1,0 +1,40 @@
+body{
+font-family:"calibri";
+text-align:center;
+padding:0;
+margin:0;
+background-color:#99B3CC;
+}
+a{
+text-decoration:none;
+color:#306DB2;
+}
+a:hover{
+color:#FF0000;
+}
+p{
+margin:0;
+padding:0;
+}
+#input{
+text-align:center;
+}
+table, td{
+border:1px solid #E1ECFE;
+margin:auto;
+border-collapse:collapse;
+}
+.top{
+margin-top:9%;
+}
+.top td, .top{
+border:none;
+}
+td, th{
+padding:4px;
+}
+
+
+/* th{
+font-size:110%;
+} */
