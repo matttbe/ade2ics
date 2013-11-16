@@ -91,7 +91,11 @@ function getFile($mode,$buffer){
 	<p>
 		<?php
 		$semaines='';
-		$week = date("W");
+		$week = date("W"); // week: 1 -> 52
+		$day = date("w");  // day: 0 (sunday) -> 6
+		$start = 0;
+		if ($day == 0 or $day == 6) // week-end => next week
+			$start = 1;
 		if ($week > 36) // septembre => decembre
 		{
 			$week -= 38; // => S0 ADE = S1 de Q1
@@ -102,7 +106,7 @@ function getFile($mode,$buffer){
 			$week += 14; // => S19 ADE = S1 de Q2
 			$end = 32;   // => 14 semaines de cours depuis S19
 		}
-		for ($i = 0; $i + $week <= $end; $i++)
+		for ($i = $start; $i + $week <= $end; $i++)
 		{
 			$suivant = $i + $week;
 			$semaines .= ','.$suivant;
@@ -114,7 +118,7 @@ function getFile($mode,$buffer){
 		<label for="codes"><b>Codes cours</b> (séparés par virgules, ex: <em>SINF11BA,FSAB11BA</em>) :</label><br /><input type="text" name="codes" id="codes" size="60" value="<?php $_POST['codes']; ?>"/><!-- ex: BIRE21MSG,optbire2mm521,optbire2m10e21,BIRE21MTC --><br />
 		<label for="semaines"><b>Semaines désirées</b> (séparés par virgules) :</label><br /><input type="text" name="semaines" id="semaines" value="<?php echo $semaines; ?>" size="60" /><br />
 		<label for="projectid">ID du projet: (16 pour 2013-2014) :</label><br /><input type="text" name="projectid" id="projectid" value="16" size="2" /><br /><br />
-		<b>NOTE</b>: D'après ADE, nous sommes aujourd'hui en semaine <b>S<?php echo $week; ?></b>.
+		<b>NOTE</b>: D'après ADE, nous sommes aujourd'hui en semaine <b>S<?php echo $week; ?></b> (depuis lundi).
 		<br />
 		En effet, selon lui, la première semaine de cours en septembre est la semaine 0.<br />Les semaines ne sont pas remises à 0 au 2ème quadri.
 		<br /><br />
