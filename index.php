@@ -117,6 +117,7 @@ function getFile($mode,$buffer){
 		?>
 		<label for="codes"><b>Codes cours</b> (séparés par virgules, ex: <em>SINF11BA,FSAB11BA</em>) :</label><br /><input type="text" name="codes" id="codes" size="60" value="<?php $_POST['codes']; ?>"/><!-- ex: BIRE21MSG,optbire2mm521,optbire2m10e21,BIRE21MTC --><br />
 		<label for="semaines"><b>Semaines désirées</b> (séparés par virgules) :</label><br /><input type="text" name="semaines" id="semaines" value="<?php echo $semaines; ?>" size="60" /><br />
+		<label for="user_pass">Utilisateur et mot de passe: </label><br /><input type="text" name="user" id="user" value="etudiantbv" size="25" /> <input type="text" name="pass" id="pass" value="studentbv" size="25" /><br />
 		<label for="projectid">ID du projet: (16 pour 2013-2014) :</label><br /><input type="text" name="projectid" id="projectid" value="16" size="2" /><br /><br />
 		<b>NOTE</b>: D'après ADE, nous sommes aujourd'hui en semaine <b>S<?php echo $week; ?></b> (depuis lundi).
 		<br />
@@ -133,6 +134,8 @@ if (isset($_POST['codes']) && $_POST['codes']!='')
 $codes = $_POST['codes'];
 $semaines = $_POST['semaines'];
 $url = 'http://horaire.sgsi.ucl.ac.be:8080';
+$user = $_POST['user'];
+$pass = $_POST['pass'];
 $projectID = $_POST['projectid'];
 // -----------------------------------------------------------------------------------------------------------------------------
 
@@ -147,7 +150,9 @@ curl_setopt($ch1, CURLOPT_HEADER, 0);
 curl_setopt($ch1, CURLOPT_COOKIEJAR, realpath("cookie_".$id.".txt"));
 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch1, CURLOPT_USERAGENT, 'Mozilla 5/0'); // utf-8
-curl_setopt($ch1, CURLOPT_URL, $url.'/ade/custom/modules/plannings/direct_planning.jsp?weeks='.$semaines.'&code='.$codes.'&login=etudiant&password=student&projectId='.$projectID);
+$full_url = $url.'/ade/custom/modules/plannings/direct_planning.jsp?weeks='.$semaines.'&code='.$codes.'&login='.$user.'&password='.$pass.'&projectId='.$projectID;
+echo '<br />Voir l\'horaire sur ADE: <a href="'.$full_url.'" target="_blank">ici</a>';
+curl_setopt($ch1, CURLOPT_URL, $full_url);
 $ploupi = curl_exec($ch1);
 curl_close($ch1);
 
