@@ -118,7 +118,7 @@ function getFile($mode,$buffer){
 		<label for="codes"><b>Codes cours</b> (séparés par virgules, ex: <em>SINF11BA,FSAB11BA</em>) :</label><br /><input type="text" name="codes" id="codes" size="60" value="<?php $_POST['codes']; ?>"/><!-- ex: BIRE21MSG,optbire2mm521,optbire2m10e21,BIRE21MTC --><br />
 		<label for="semaines"><b>Semaines désirées</b> (séparés par virgules) :</label><br /><input type="text" name="semaines" id="semaines" value="<?php echo $semaines; ?>" size="60" /><br />
 		<label for="user_pass">Utilisateur et mot de passe: </label><br /><input type="text" name="user" id="user" value="etudiantbv" size="25" /> <input type="text" name="pass" id="pass" value="studentbv" size="25" /><br />
-		<label for="projectid">ID du projet: (16 pour 2013-2014) :</label><br /><input type="text" name="projectid" id="projectid" value="16" size="2" /><br /><br />
+		<label for="projectid">ID du projet: (6 pour 2014-2015) :</label><br /><input type="text" name="projectid" id="projectid" value="6" size="2" /><br /><br />
 		<b>NOTE</b>: D'après ADE, nous sommes aujourd'hui en semaine <b>S<?php echo $week; ?></b> (depuis lundi).
 		<br />
 		En effet, selon lui, la première semaine de cours en septembre est la semaine 0.<br />Les semaines ne sont pas remises à 0 au 2ème quadri.
