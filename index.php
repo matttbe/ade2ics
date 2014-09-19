@@ -108,7 +108,7 @@ function createNewFile($ext, $buffer)
 
 	<div class="jumbotron">
 	<h1>ADExpert UCL Fixer</h1>
-		<p>Depuis l'année académique 2014-2015, une nouvelle version d'ADExpert est disponible. Le site est beaucoup plus difficile à parser mais une nouvelle fonctionnalité d'export au format ICS est disponible. Seulement, cette méthode nous donne des fichiers non conformes avec une mauvaise heure...</p>
+		<p>Depuis l'année académique 2014-2015, une nouvelle version d'ADExpert est disponible. Une nouvelle méthode d'export au format ICS (pour Google Calendar, Evolution, Thunderbird, etc.) est maintenant intégrée au site ADExpert. Seulement, cette méthode nous donne des fichiers non conformes avec une mauvaise heure... Deux solutions s'offrent à nous : Celle proposée sur ce site pour profiter de ce nouvel outil d'export qui intègre des UUID et permet donc, lors d'un nouvel import contenant des éléments déjà présents dans le calendrier, de les mettre à jour et non les dupliquer. Une autre possibilité est d'utiliser l'ancienne méthode en <em>parsant</em> l'ancienne vue du site d'ADExpert comme proposé ici (avec des options supplémentaires) <a href="http://ucl2icsphp.appspot.com">ucl2icsphp.appspot.com</a>.</p>
 	</div>
 
 	<?php
@@ -193,6 +193,7 @@ function createNewFile($ext, $buffer)
 	}
 	elseif (isset($_GET['step']) AND $_GET['step'] == "1")
 	{
+		// note: address which can be parsed with the older method: http://horairev6.uclouvain.be/jsp/custom/modules/plannings/direct_planning.jsp?keepSelection&(...)
 		if (isset($_POST['weeks']) AND isset($_POST['codes']) AND isset($_POST['user']) AND isset($_POST['pass']) AND isset($_POST['projectid']))
 			$fullUrl = 'http://horairev6.uclouvain.be/direct/index.jsp?displayConfName=webEtudiant&showTree=true&showOptions=true&weeks='.$_POST['weeks'].'&code='.$_POST['codes'].'&login='.$_POST['user'].'&password='.$_POST['pass'].'&projectId='.$_POST['projectid'];
 		else
@@ -211,7 +212,7 @@ function createNewFile($ext, $buffer)
 					if ($fullUrl)
 						echo "de se rendre sur <a href='".$fullUrl."' target='_blank'>le site d'ADExpert ici</a> et ";
 					?>
-					d'envoyer ci-dessous le fichier ICS (ICalendar) généré par ADExpert afin de régler les soucis d'heures, etc.</p>
+					d'envoyer ci-dessous le fichier ICS (ICalendar) généré par ADExpert afin de régler les soucis d'heures, etc. Pour récupérer ce fichier ICS, vous devriez trouver sur le site d'ADExpert une icône en-dessous à gauche pour l'export. Attention, l'option pour générer une URL ne fonctionne pas!</p>
 			</div>
 		</div>
 		<div class="container">
